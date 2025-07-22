@@ -1,42 +1,119 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Additional component styles */
+
+.sidebar-wrapper {
+  display: block;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 1023px) {
+  .sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .sidebar-wrapper.active {
+    transform: translateX(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Mobile Navigation Styles */
+.mobile-nav-toggle {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .mobile-nav-toggle {
+    display: block;
   }
 }
 
-.card {
-  padding: 2em;
+/* Ensure proper z-index layering */
+.mobile-nav-overlay {
+  z-index: 1500;
 }
 
-.read-the-docs {
-  color: #888;
+.mobile-nav-toggle {
+  z-index: 2000;
+}
+
+.sidebar {
+  z-index: 1000;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .portfolio-container {
+    padding-top: 0;
+  }
+  
+  .main-content {
+    margin-top: 0;
+  }
+}
+
+/* Touch-friendly mobile interactions */
+@media (max-width: 1023px) {
+  .nav-link,
+  .mobile-nav-link,
+  .contact-btn,
+  .carousel-btn {
+    min-height: 44px; /* iOS minimum touch target */
+  }
+  
+  .expertise-header {
+    min-height: 44px;
+  }
+}
+
+/* Prevent body scroll when mobile nav is open */
+body.mobile-nav-open {
+  overflow: hidden;
+}
+
+/* Smooth transitions for all interactive elements */
+.nav-link,
+.mobile-nav-link,
+.contact-btn,
+.carousel-btn,
+.expertise-header,
+.stat-card,
+.project-content {
+  transition: all 0.3s ease;
+}
+
+/* Enhanced focus states for accessibility */
+.nav-link:focus,
+.mobile-nav-link:focus,
+.contact-btn:focus,
+.carousel-btn:focus,
+.expertise-header:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Mobile-optimized hover states */
+@media (hover: hover) {
+  .nav-link:hover,
+  .mobile-nav-link:hover,
+  .contact-btn:hover,
+  .carousel-btn:hover,
+  .expertise-header:hover,
+  .stat-card:hover,
+  .project-content:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link:active,
+  .mobile-nav-link:active,
+  .contact-btn:active,
+  .carousel-btn:active,
+  .expertise-header:active {
+    transform: scale(0.98);
+  }
 }
